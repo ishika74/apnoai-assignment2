@@ -57,6 +57,10 @@
       // useState gives us a value (isDark) and a function to update it (setIsDark)
       const [isDark, setIsDark] = useState(false);
       const [isConnected, setIsConnected] = useState(false);
+      const [showGreeting, setShowGreeting] = useState(false);
+
+      // Bonus interaction: toggle a friendly greeting
+      const toggleGreeting = () => setShowGreeting(current => !current);
 
       // Toggle theme function
       const toggleTheme = () => setIsDark(!isDark);
@@ -135,6 +139,21 @@
             >
               {isConnected ? '✓ Connected' : 'Connect'}
             </button>
+
+            {/* Bonus Feature: Interactive Button */}
+            <div className={`mb-6 rounded-2xl p-4 text-center ${isDark ? 'bg-white/10 text-white' : 'bg-white/40 text-gray-900'}`}>
+              <button
+                onClick={toggleGreeting}
+                className="w-full py-2.5 rounded-xl font-semibold text-white bg-violet-600 hover:bg-violet-700 active:scale-[0.98] transition-all shadow-md"
+              >
+                {showGreeting ? 'Thanks for visiting!' : 'Say Hello 👋'}
+              </button>
+              {showGreeting && (
+                <p className={`mt-3 text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                  Welcome to my profile!
+                </p>
+              )}
+            </div>
 
             {/* Social Links */}
             <div className="flex justify-center gap-4">
